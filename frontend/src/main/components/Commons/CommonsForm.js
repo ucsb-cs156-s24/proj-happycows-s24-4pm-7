@@ -429,7 +429,7 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
                 <div style={{ marginTop: '20px' }}>
                     <h5>Debug Time Display</h5>
                     <p><strong>Current Browser Time:</strong> {currentTime.toLocaleString()}</p>
-                    <p><strong>Date Object:</strong> {currentTime.toString()}</p>
+                    <p><strong>Date Object:</strong> {curr.toString()}</p>
                 </div>
                 </Col>
             </Row>
