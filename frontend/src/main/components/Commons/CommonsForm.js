@@ -85,7 +85,7 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
     const curr = new Date();
     const today = toLocalISOString(curr).split('T')[0];
     const currMonth = curr.getMonth() % 12;
-    const nextMonth = new Date(curr.getFullYear(), currMonth + 1, curr.getDate()).toISOString().substr(0, 10);
+    const nextMonth = toLocalISOString(new Date(curr.getFullYear(), currMonth + 1, curr.getDate())).split('T')[0];
     const DefaultVals = {
         name: "",
         startingBalance: defaultValuesData?.startingBalance || "10000",
@@ -439,6 +439,9 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
                         <p><strong>toLocaleString:</strong> {toLocalISOString(curr)}</p>
                         <p><strong>today ISO:</strong> {curr.toISOString().split('T')[0]}</p>
                         <p><strong>today LocalISO:</strong> {toLocalISOString(curr).split('T')[0]}</p>
+                        <p><strong>next month:</strong> {(new Date(curr.getFullYear(), currMonth + 1, curr.getDate())).toString()}</p>
+                        <p><strong>next month ISO:</strong> {(new Date(curr.getFullYear(), currMonth + 1, curr.getDate())).toISOString().split('T')[0]}</p>
+                        <p><strong>next month LocalISO:</strong> {toLocalISOString(new Date(curr.getFullYear(), currMonth + 1, curr.getDate())).split('T')[0]}</p>
                     </div>
                 </Col>
             </Row>
