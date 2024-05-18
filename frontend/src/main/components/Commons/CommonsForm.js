@@ -424,7 +424,7 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
                         <p><strong>toString:</strong> {curr.toLocaleString()}</p>
                         <p><strong>toLocaleString:</strong> {curr.toLocaleString()}</p>
                         <p><strong>toISOString:</strong> {curr.toISOString()}</p>
-                        <p><strong>toLocaleString:</strong> {toLocalISOString(curr)}</p>
+                        <p><strong>toLocalISOString:</strong> {toLocalISOString(curr)}</p>
                         <p><strong>today ISO:</strong> {curr.toISOString().split('T')[0]}</p>
                         <p><strong>today LocalISO:</strong> {toLocalISOString(curr).split('T')[0]}</p>
                         <p><strong>next month:</strong> {(new Date(curr.getFullYear(), currMonth + 1, curr.getDate())).toString()}</p>
