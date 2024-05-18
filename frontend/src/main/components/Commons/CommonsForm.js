@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 import {useBackend} from "main/utils/useBackend";
 import { useEffect } from "react";
 import HealthUpdateStrategiesDropdown from "main/components/Commons/HealthStrategiesUpdateDropdown";
-
+import {useState} from "react";
 function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
     let modifiedCommons = initialCommons ? { ...initialCommons } : {};  // make a shallow copy of initialCommons
 
@@ -86,6 +86,15 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
 
     const belowStrategy = defaultValuesData?.belowCapacityStrategy;
     const aboveStrategy = defaultValuesData?.aboveCapacityStrategy;
+    
+
+    const [currentTime, setCurrentTime] = useState(new Date());
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          setCurrentTime(new Date());
+        }, 1000);
+        return () => clearInterval(intervalId);
+      }, []);
 
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
@@ -413,6 +422,16 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
                         className="pl-1 w-30 text-left"
                         style={{width: '30%'}}
                 >{buttonLabel}</Button>
+            </Row>
+
+            <Row>
+                <Col>
+                <div style={{ marginTop: '20px' }}>
+                    <h5>Debug Time Display</h5>
+                    <p><strong>Current Browser Time:</strong> {currentTime.toLocaleString()}</p>
+                    <p><strong>Date Object:</strong> {currentTime.toString()}</p>
+                </div>
+                </Col>
             </Row>
         </Form>
     );
