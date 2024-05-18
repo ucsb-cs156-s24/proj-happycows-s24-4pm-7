@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/Nav/AppNavbarLocalhost.js</title>
+    <title>Code coverage report for components/Utils/DateConversion.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Nav</a> AppNavbarLocalhost.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/Utils</a> DateConversion.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>23/23</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -90,64 +90,61 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a>
-<a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">852x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">142x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">143x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">148x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">145x</span>
+<span class="cline-any cline-yes">145x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Container, Nav, Navbar } from "react-bootstrap";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const toLocalISOString = (date) =&gt; {
+    const pad = (num) =&gt; String(num).padStart(2, '0');
+    const datePart = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+    const timePart = `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}.${pad(date.getMilliseconds(), 3)}`;
+    const offset = calculateTimezoneOffset(date);
+    const sign = calculateSign(offset);
+    const hours = calculateHours(offset);
+    const minutes = calculateMinutes(offset);
+    const timezone = `${sign}${hours}:${minutes}`;
+    return `${datePart}T${timePart}${timezone}`;
+};
 &nbsp;
-export default function AppNavbarLocalhost({url}) {
-  return (
-    &lt;&gt;
-      &lt;Navbar expand="sm" bg="warning" sticky="top" data-testid="AppNavbarLocalhost"&gt;
-        &lt;Container&gt;
-          &lt;Navbar.Brand href="http://localhost:8080"&gt;
-            Warning
-          &lt;/Navbar.Brand&gt;
+export const calculateTimezoneOffset = (date) =&gt; -date.getTimezoneOffset();
 &nbsp;
-          &lt;Navbar.Toggle /&gt;
+export const calculateSign = (offset) =&gt; (offset &gt;= 0) ? '+' : '-';
 &nbsp;
-          &lt;Navbar.Collapse className="justify-content-between"&gt;
+export const calculateHours = (offset) =&gt; {
+  const pad = (num) =&gt; String(num).padStart(2, '0');
+  return pad(Math.floor(Math.abs(offset) / 60));
+};
 &nbsp;
-            &lt;Nav className="mr-auto text-center"&gt;
-              &lt;Nav.Item className="text-center"&gt;
-                &lt;p&gt;
-                  Running on &lt;code&gt;{ url }&lt;/code&gt; with no backend.&lt;br /&gt;
-                  You probably want &lt;a href="http://localhost:8080"&gt;http://localhost:8080&lt;/a&gt; instead.
-                &lt;/p&gt;
-              &lt;/Nav.Item&gt;
-            &lt;/Nav&gt;
-            &lt;/Navbar.Collapse&gt;
-        &lt;/Container&gt;
-      &lt;/Navbar &gt;
-    &lt;/&gt;
-  );
-}</pre></td></tr></table></pre>
+export const calculateMinutes = (offset) =&gt; {
+  const pad = (num) =&gt; String(num).padStart(2, '0');
+  return pad(Math.abs(offset) % 60);
+};
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
