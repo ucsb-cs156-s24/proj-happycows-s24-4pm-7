@@ -427,6 +427,21 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
                         style={{width: '30%'}}
                 >{buttonLabel}</Button>
             </Row>
+
+            {/* Debug Time Display */}
+            <Row>
+                <Col>
+                    <div style={{ marginTop: '20px' }}>
+                        <h5>Debug Time Display</h5>
+                        <p><strong>toString:</strong> {curr.toLocaleString()}</p>
+                        <p><strong>toLocaleString:</strong> {curr.toLocaleString()}</p>
+                        <p><strong>toISOString:</strong> {curr.toISOString()}</p>
+                        <p><strong>toLocaleString:</strong> {toLocalISOString(curr)}</p>
+                        <p><strong>today ISO:</strong> {curr.toISOString().split('T')[0]}</p>
+                        <p><strong>today LocalISO:</strong> {toLocalISOString(curr).split('T')[0]}</p>
+                    </div>
+                </Col>
+            </Row>
         </Form>
     );
 }
