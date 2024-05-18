@@ -3,7 +3,7 @@ import {useForm} from "react-hook-form";
 import {useBackend} from "main/utils/useBackend";
 import { useEffect } from "react";
 import HealthUpdateStrategiesDropdown from "main/components/Commons/HealthStrategiesUpdateDropdown";
-import {useState} from "react";
+
 function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
     let modifiedCommons = initialCommons ? { ...initialCommons } : {};  // make a shallow copy of initialCommons
 
@@ -67,10 +67,23 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
         }
     }, [defaultValuesData, initialCommons, reset]);
     // Stryker restore all
-    
+
+    //custom function to convert date to local ISO string
+    const toLocalISOString = (date) => {
+        const pad = (num) => String(num).padStart(2, '0');
+        const datePart = `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+        const timePart = `${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}.${pad(date.getMilliseconds(), 3)}`;
+        const offset = -date.getTimezoneOffset();
+        const sign = offset >= 0 ? '+' : '-';
+        const hours = pad(Math.floor(Math.abs(offset) / 60));
+        const minutes = pad(Math.abs(offset) % 60);
+        const timezone = `${sign}${hours}:${minutes}`;
+        return `${datePart}T${timePart}${timezone}`;
+    };
+
     const testid = "CommonsForm";
     const curr = new Date();
-    const today = curr.toISOString().split('T')[0];
+    const today = toLocalISOString(curr).split('T')[0];
     const currMonth = curr.getMonth() % 12;
     const nextMonth = new Date(curr.getFullYear(), currMonth + 1, curr.getDate()).toISOString().substr(0, 10);
     const DefaultVals = {
@@ -86,15 +99,6 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
 
     const belowStrategy = defaultValuesData?.belowCapacityStrategy;
     const aboveStrategy = defaultValuesData?.aboveCapacityStrategy;
-    
-
-    const [currentTime, setCurrentTime] = useState(new Date());
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-          setCurrentTime(new Date());
-        }, 1000);
-        return () => clearInterval(intervalId);
-      }, []);
 
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
@@ -422,16 +426,6 @@ function CommonsForm({initialCommons, submitAction, buttonLabel = "Create"}) {
                         className="pl-1 w-30 text-left"
                         style={{width: '30%'}}
                 >{buttonLabel}</Button>
-            </Row>
-
-            <Row>
-                <Col>
-                <div style={{ marginTop: '20px' }}>
-                    <h5>Debug Time Display</h5>
-                    <p><strong>Current Browser Time:</strong> {currentTime.toLocaleString()}</p>
-                    <p><strong>Date Object:</strong> {curr.toString()}</p>
-                </div>
-                </Col>
             </Row>
         </Form>
     );
