@@ -34,9 +34,9 @@ const pagedProfitsFixtures = {
       pageNumber: 0,
       pageSize: 5,
       sort: {
-        sorted: true,
+        sorted: false,
         empty: false,
-        unsorted: false,
+        unsorted: true,
       },
       offset: 0,
       paged: true,
@@ -45,9 +45,9 @@ const pagedProfitsFixtures = {
     first: true,
     last: true,
     sort: {
-      sorted: true,
+      sorted: false,
       empty: false,
-      unsorted: false,
+      unsorted: true,
     },
     size: 5,
     content: [
@@ -154,9 +154,9 @@ const pagedProfitsFixtures = {
         pageNumber: 0,
         pageSize: 5,
         sort: {
-          sorted: true,
+          sorted: false,
           empty: false,
-          unsorted: false,
+          unsorted: true,
         },
         offset: 0,
         paged: true,
@@ -273,9 +273,9 @@ const pagedProfitsFixtures = {
         pageNumber: 1,
         pageSize: 5,
         sort: {
-          sorted: true,
+          sorted: false,
           empty: false,
-          unsorted: false,
+          unsorted: true,
         },
         offset: 5,
         paged: true,
@@ -387,3 +387,5 @@ const pagedProfitsFixtures = {
     }
   ],
 };
+
+export default pagedProfitsFixtures;
