@@ -51,7 +51,7 @@ public class AnnouncementsController extends ApiController{
         @Parameter(description = "The id of the common") @RequestParam Long commonsId,
         @Parameter(description = "The datetime at which the announcement will be shown (defaults to current time)") @RequestParam(required = false) Date startDate,
         @Parameter(description = "The datetime at which the announcement will stop being shown (optional)") @RequestParam(required = false) Date endDate,
-        @Parameter(description = "The announcement to be sent out") @RequestParam String announcementText) {
+        @Parameter(description = "The announcement to be sent out") @RequestBody String announcementText) {
 
         User user = getCurrentUser().getUser();
         Long userId = user.getId();
