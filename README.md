@@ -114,8 +114,7 @@ In order to run the integration and end-to-end test suite, using the following s
 
 ```
 mvn clean
-INTEGRATION=true mvn test-compile
-INTEGRATION=true mvn failsafe:integration-test
+INTEGRATION=true mvn test-compile failsafe:integration-test -Dit.test=HomePageWebIT
 ```
 
 In order to run the end-to-end tests 'not headless' use the following instead of the last command.

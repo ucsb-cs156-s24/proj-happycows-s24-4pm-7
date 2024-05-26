@@ -3,7 +3,7 @@ package edu.ucsb.cs156.happiercows.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.List;
 
@@ -26,8 +26,6 @@ public class User {
     private String locale;
     private String hostedDomain;
     private boolean admin;
-    @Builder.Default
-    private boolean suspended = false;
 
   @Builder.Default
   private Instant lastOnline = Instant.now();
