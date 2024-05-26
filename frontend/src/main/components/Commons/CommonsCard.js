@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
+import { useDrag } from 'react-dnd';
 
 const curr = new Date();
 
@@ -24,12 +25,21 @@ function isFutureDate(startingDate) {
     }
 }
 
-const CommonsCard = ({ buttonText, buttonLink, commons }) => {
+  const CommonsCard = ({ buttonText, buttonLink, commons }) => {
     const testIdPrefix = "commonsCard";
+
+    const [{ isDragging }, drag] = useDrag({
+        type: 'CARD', // This is the type of the draggable item
+        item: { id: commons.id }, // Access the id property of the commons object
+        collect: (monitor) => ({
+            isDragging: !!monitor.isDragging(),
+        }),
+    });
+
     return (
-        <Card.Body style={
+        <Card.Body ref={drag} style={
             // Stryker disable next-line all : don't mutation test CSS 
-            { fontSize: "20px", borderTop: "1px solid lightgrey" }
+            { opacity: isDragging ? 0.5 : 1, fontSize: "20px", borderTop: "1px solid lightgrey" }
         }>
             <Container>
                 <Row>

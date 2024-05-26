@@ -8,6 +8,8 @@ import { useBackend, useBackendMutation } from "main/utils/useBackend";
 import { useCurrentUser } from "main/utils/currentUser";
 import { commonsNotJoined } from "main/utils/commonsUtils";
 import getBackgroundImage from "main/components/Utils/HomePageBackground";
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import "./HomePage.css"
 
@@ -64,6 +66,7 @@ export default function HomePage({hour=null}) {
   const commonsNotJoinedList = commonsNotJoined(commons, commonsJoined);
   
   return (
+    <DndProvider backend={HTML5Backend}>
     <div data-testid={"HomePage-main-div"} style={{ backgroundSize: 'cover', backgroundImage: `url(${Background})` }}>
       <BasicLayout>
         <div data-testid= {"HomePage-intro-card"} className="title-box">
@@ -83,5 +86,6 @@ export default function HomePage({hour=null}) {
         </Container>
       </BasicLayout>
     </div>
+    </DndProvider>
   )
 }
