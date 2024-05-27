@@ -5,7 +5,7 @@ import { hasRole } from "main/utils/currentUser";
 import { daysSinceTimestamp } from "main/utils/dateUtils";
 import AnnouncementCard from "main/components/Announcement/AnnouncementCard";
 
-export default function CommonsOverview({ commonsPlus, currentUser, announcement }) {
+export default function CommonsOverview({ commonsPlus, currentUser, announcements }) {
 
     let navigate = useNavigate();
     // Stryker disable next-line all
@@ -18,8 +18,10 @@ export default function CommonsOverview({ commonsPlus, currentUser, announcement
                 <Row>
                     <Col className="text-start">
                         <div data-testid="announcement-test">
-                            {announcement ? (
-                                <AnnouncementCard announcement={announcement} />
+                            {announcements && announcements.length > 0 ? (
+                                announcements.map((announcement, index) => (
+                                    <AnnouncementCard key={index} announcement={announcement} />
+                                ))
                             ) : (
                                 <p>No announcements available.</p>
                             )}
