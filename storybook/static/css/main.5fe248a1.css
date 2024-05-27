@@ -28,6 +28,7 @@ body {
     -webkit-backdrop-filter: blur(10px); 
     display: inline-block;
     margin-bottom: 0px;
+    box-shadow: 5px 5px 10px 5px lightgrey;
 }
 
 .subtitle{
@@ -63,4 +64,4 @@ body {
     text-align: center;
 }
 
-/*# sourceMappingURL=main.e18c5fe8.css.map*/
+/*# sourceMappingURL=main.5fe248a1.css.map*/
