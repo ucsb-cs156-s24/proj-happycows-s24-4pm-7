@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 
 export function isFutureDate(startingDate) {
@@ -26,13 +26,20 @@ export function isFutureDate(startingDate) {
 const AnnouncementCard = ({ announcement }) => {
     const testIdPrefix = "announcementCard";
     const [isCollapsed, setIsCollapsed] = useState(true);
-    const maxCharsShortVersion = 50;
+    const [isOverflow, setIsOverflow] = useState(false);
+    const textRef = useRef(null);
+
+    useEffect(() => {
+        if (textRef.current) {
+            setIsOverflow(textRef.current.scrollWidth > textRef.current.clientWidth);
+        }
+    }, []);
 
     if (!announcement || !announcement.startDate || isFutureDate(announcement.startDate)) {
         return null;
     }
 
-    if ( announcement.endDate && (!isFutureDate(announcement.endDate))) {
+    if (announcement.endDate && (!isFutureDate(announcement.endDate))) {
         return null;
     }
 
@@ -41,27 +48,22 @@ const AnnouncementCard = ({ announcement }) => {
     };
 
     return (
-        <Card.Body style={
-            // Stryker disable next-line all : don't mutation test CSS 
-            { fontSize: "14px", border: "1px solid lightgrey", padding: "4px", borderRadius: "10px", margin: "10px 0" }
-        }>
+        <Card.Body style={{ fontSize: "14px", border: "1px solid lightgrey", padding: "4px", borderRadius: "10px", margin: "10px 0" }}>
             <Container>
                 <Row>
                     <Col xs={12} data-testid={`${testIdPrefix}-id-${announcement.announcementText}`}>
-                        <div style={ // Stryker disable next-line all : don't mutation test CSS 
-                        { 
-                            // Stryker disable next-line all : don't mutation test CSS
-                            whiteSpace: isCollapsed ? 'nowrap' : 'normal',
-                            // Stryker disable next-line all : don't mutation test CSS
-                            overflow: isCollapsed ? 'hidden' : 'visible',
-                            // Stryker disable next-line all : don't mutation test CSS
-                            textOverflow: isCollapsed ? 'ellipsis' : 'clip',
-                            // Stryker disable next-line all : don't mutation test CSS
-                            maxWidth: isCollapsed ? '250px' : 'none'
-                        }}>
+                        <div
+                            ref={textRef}
+                            style={{
+                                whiteSpace: isCollapsed ? 'nowrap' : 'normal',
+                                overflow: isCollapsed ? 'hidden' : 'visible',
+                                textOverflow: isCollapsed ? 'ellipsis' : 'clip',
+                                maxWidth: isCollapsed ? '500px' : 'none'
+                            }}
+                        >
                             {announcement.announcementText}
                         </div>
-                        {announcement.announcementText.length > maxCharsShortVersion && (
+                        {isOverflow && (
                             <Button variant="link" onClick={toggleCollapse} style={{ fontSize: '11px', padding: '2px' }}>
                                 {isCollapsed ? 'Show more' : 'Show less'}
                             </Button>
