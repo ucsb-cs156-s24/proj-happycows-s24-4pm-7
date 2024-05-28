@@ -55,16 +55,22 @@ const AnnouncementCard = ({ announcement }) => {
                         <div
                             ref={textRef}
                             style={{
+                                // Stryker disable next-line all : don't mutation test CSS
                                 whiteSpace: isCollapsed ? 'nowrap' : 'normal',
+                                // Stryker disable next-line all : don't mutation test CSS
                                 overflow: isCollapsed ? 'hidden' : 'visible',
+                                // Stryker disable next-line all : don't mutation test CSS
                                 textOverflow: isCollapsed ? 'ellipsis' : 'clip',
-                                maxWidth: isCollapsed ? '500px' : 'none'
+                                // Stryker disable next-line all : don't mutation test CSS
+                                maxWidth: isCollapsed ? '250px' : 'none'
                             }}
                         >
                             {announcement.announcementText}
                         </div>
                         {isOverflow && (
-                            <Button variant="link" onClick={toggleCollapse} style={{ fontSize: '11px', padding: '2px' }}>
+                            <Button variant="link" onClick={toggleCollapse} style={
+                                // Stryker disable next-line all : don't mutation test CSS
+                                { fontSize: '11px', padding: '2px' }}>
                                 {isCollapsed ? 'Show more' : 'Show less'}
                             </Button>
                         )}
