@@ -5,14 +5,35 @@ import AdminListAnnouncementsPage from 'main/pages/AdminListAnnouncementsPage';
 
 
 
-test('redirects to /not-found', () => {
-    render(
-        <MemoryRouter initialEntries={['/admin/announcements']}>
-            <Routes>
-                <Route path="/admin/announcements" element={<AdminListAnnouncementsPage />} />
-                <Route path="/not-found" element={<div>404 Not Found</div>} />
-            </Routes>
-        </MemoryRouter>
-    );
-    expect(screen.getByText('404 Not Found')).toBeInTheDocument();
+describe("AdminListAnnouncementsPage tests", () => {
+
+    const axiosMock = new AxiosMockAdapter(axios);
+
+
+    const setupAdminUser = () => {
+        axiosMock.reset();
+        axiosMock.resetHistory();
+        axiosMock.onGet("/api/currentUser").reply(200, apiCurrentUserFixtures.adminUser);
+        axiosMock.onGet("/api/systemInfo").reply(200, systemInfoFixtures.showingNeither);
+    };
+
+    const queryClient = new QueryClient();
+    test("Renders expected content", () => {
+        // arrange
+
+        setupAdminUser();
+
+        // act
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <AdminListAnnouncementsPage />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+
+        // assert
+        expect(screen.getByText("Admin List Announcements page not yet implemented")).toBeInTheDocument();
+    });
+
 });
