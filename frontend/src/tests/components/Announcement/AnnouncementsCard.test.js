@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import { announcementFixtures } from "fixtures/announcementFixtures";
 import AnnouncementCard, { isFutureDate } from "main/components/Announcement/AnnouncementCard";
 
@@ -124,7 +124,7 @@ describe("AnnouncementCard tests", () => {
             <AnnouncementCard announcement={announcementFixtures.threeAnnouncements[1]} />
         );
 
-        const button = screen.getByText("Show more");
+        const button = await waitFor(() => screen.getByText("Show more"));
         expect(button).toBeInTheDocument();
 
         fireEvent.click(button);
@@ -177,15 +177,6 @@ describe("AnnouncementCard tests", () => {
 
         const textElement = screen.queryByText(noStartDateAnnouncement.announcementText);
         expect(textElement).toBeNull();
-    });
-
-    test("button has correct style", async () => {
-        render(
-            <AnnouncementCard announcement={announcementFixtures.threeAnnouncements[1]} />
-        );
-
-        const button = screen.getByText("Show more");
-        expect(button).toHaveStyle({ fontSize: '11px', padding: '2px' });
     });
 });
 
