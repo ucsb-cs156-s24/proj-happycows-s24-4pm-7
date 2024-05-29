@@ -26,8 +26,12 @@ public class User {
     private String locale;
     private String hostedDomain;
     private boolean admin;
+
+    // using object wrapper class Boolean instead of primitive boolean to allow for null values
+    // so that the @NoArgsConstructor can set the default value to null and the @Builder can set the default value to false
+    // this is necessary because it breaks OAuth2 login otherwise
     @Builder.Default
-    private boolean suspended = false;
+    private Boolean suspended = false;
 
   @Builder.Default
   private Instant lastOnline = Instant.now();
@@ -45,7 +49,7 @@ public class User {
 
     @Override
     public String toString() {
-<span class="fc" id="L48">        return String.format(&quot;User: id=%d email=%s&quot;, id, email);</span>
+<span class="fc" id="L52">        return String.format(&quot;User: id=%d email=%s&quot;, id, email);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
