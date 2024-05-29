@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 
 const AdminListAnnouncementsPage = () => {
     // Stryker disable all : placeholder for future implementation
