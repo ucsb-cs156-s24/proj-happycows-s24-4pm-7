@@ -33,7 +33,7 @@ const AnnouncementCard = ({ announcement }) => {
         if (textRef.current) {
             setIsOverflow(textRef.current.scrollWidth > textRef.current.clientWidth);
         }
-    }, []);
+    }, [announcement.announcementText]);
 
     if (!announcement || !announcement.startDate || isFutureDate(announcement.startDate)) {
         return null;
