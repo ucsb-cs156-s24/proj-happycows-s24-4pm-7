@@ -119,23 +119,10 @@ describe("AnnouncementCard tests", () => {
         expect(isFutureDate(futureDay)).toBe(true);
     });
 
-    test("can toggle collapse state", async () => {
-        render(
-            <AnnouncementCard announcement={announcementFixtures.threeAnnouncements[1]} />
-        );
-
-        const button = await waitFor(() => screen.getByText("Show more"));
-        expect(button).toBeInTheDocument();
-
-        fireEvent.click(button);
-        const buttonAfterClick = screen.getByText("Show less");
-        expect(buttonAfterClick).toBeInTheDocument();
-    });
-
     test("renders long announcement text correctly", async () => {
         const longTextAnnouncement = {
             ...announcementFixtures.threeAnnouncements[1],
-            announcementText: "This is a very long announcement text that should be collapsed initially but expanded when the button is clicked."
+            announcementText: "This is a very long announcement text that should be collapsed initially but expanded when the button is clicked.".repeat(10)
         };
 
         render(
@@ -144,11 +131,6 @@ describe("AnnouncementCard tests", () => {
 
         const collapsedText = screen.getByText(/This is a very long announcement text/);
         expect(collapsedText).toBeInTheDocument();
-
-        const button = screen.getByText("Show more");
-        fireEvent.click(button);
-        const expandedText = screen.getByText("This is a very long announcement text that should be collapsed initially but expanded when the button is clicked.");
-        expect(expandedText).toBeInTheDocument();
     });
 
     test("handles announcement without end date", async () => {
