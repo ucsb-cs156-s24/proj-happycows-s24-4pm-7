@@ -35,17 +35,15 @@ const AnnouncementCard = ({ announcement }) => {
     }
 
     return (
-        <Card.Body style={
-            // Stryker disable next-line all : don't mutation test CSS
-            { fontSize: "14px", border: "1px solid lightgrey", padding: "4px", borderRadius: "10px", margin: "10px 0" }
-        }>
+        <Card.Body 
+        // Stryker disable next-line all : don't mutation test CSS
+        style={{ fontSize: "14px", border: "1px solid lightgrey", padding: "4px", borderRadius: "10px", margin: "10px 0" }}>
             <Container>
                 <Row>
                     <Col xs={12} data-testid={`${testIdPrefix}-id-${announcement.announcementText}`}>
                         <div
-                            style={{
                                 // Stryker disable next-line all : don't mutation test CSS
-                                overflow: 'auto',
+                                style={{overflow: 'auto',
                                 // Stryker disable next-line all : don't mutation test CSS
                                 maxHeight: '100px',
                                 // Stryker disable next-line all : don't mutation test CSS

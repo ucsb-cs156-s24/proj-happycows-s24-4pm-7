@@ -11,14 +11,14 @@ export default function CommonsOverview({ commonsPlus, currentUser, announcement
     // Stryker disable next-line all
     const leaderboardButtonClick = () => { navigate("/leaderboard/" + commonsPlus.commons.id) };
     const showLeaderboard = (hasRole(currentUser, "ROLE_ADMIN") || commonsPlus.commons.showLeaderboard );
-    return (
+    return ( // Stryker disable all: announcements backend broken so testing by posting announcements does not work
+
         <Card data-testid="CommonsOverview">
             <Card.Header as="h5">Announcements</Card.Header>
             <Card.Body>
                 <Row>
                     <Col className="text-start">
                         <div data-testid="announcement-test">
-                            { /* Stryker disable all: announcements backend broken so testing by posting announcements does not work */ }
                             {announcements && announcements.length > 0 ? (
                                 announcements.map((announcement, index) => (
                                     <AnnouncementCard key={index} announcement={announcement} />
@@ -26,7 +26,6 @@ export default function CommonsOverview({ commonsPlus, currentUser, announcement
                             ) : (
                                 <p>No announcements available.</p>
                             )}
-                            { /* Stryker restore all */ }
                         </div>
                     </Col>
                 </Row>
@@ -44,5 +43,5 @@ export default function CommonsOverview({ commonsPlus, currentUser, announcement
                 </Row>
             </Card.Body>
         </Card>
-    );
+    ); // Stryker restore all
 }; 
