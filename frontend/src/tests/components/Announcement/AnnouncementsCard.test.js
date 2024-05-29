@@ -1,4 +1,4 @@
-import { render, screen, waitFor, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { announcementFixtures } from "fixtures/announcementFixtures";
 import AnnouncementCard, { isFutureDate } from "main/components/Announcement/AnnouncementCard";
 
