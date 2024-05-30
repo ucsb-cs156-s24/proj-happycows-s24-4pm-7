@@ -21,6 +21,7 @@ import AdminViewPlayPage from "main/pages/AdminViewPlayPage";
 import ProtectedPlayPage from "main/pages/ProtectedPlayPage";
 import AdminSuspendUserPage from "main/pages/AdminSuspendUserPage";
 import AdminListAnnouncementsPage from "main/pages/AdminListAnnouncementsPage";
+import AdminCreateAnnouncementsPage from "main/pages/AdminCreateAnnouncementsPage";
 
 
 function App() {
@@ -58,6 +59,10 @@ function App() {
             <Route 
                 path="/admin/suspend/user/:userId" 
                 element={<AdminSuspendUserPage />}
+            />
+            <Route
+                path="/admin/announcements/:commonsId/create"
+                element={<AdminCreateAnnouncementsPage />}
             />
         </>
     ) : null;
