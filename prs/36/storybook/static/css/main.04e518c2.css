@@ -23,7 +23,7 @@ body {
     font-weight: bold;
     background: rgba(255, 255, 255, 0.7); 
     border-radius: 10px; 
-    padding: 10px; 
+    padding: 15px 40px; 
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); 
     display: inline-block;
@@ -64,4 +64,4 @@ body {
     text-align: center;
 }
 
-/*# sourceMappingURL=main.5fe248a1.css.map*/
+/*# sourceMappingURL=main.04e518c2.css.map*/
