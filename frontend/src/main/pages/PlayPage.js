@@ -81,7 +81,7 @@ export default function PlayPage() {
         }
     );
 
-    const announcements = announcementsResponse ? announcementsResponse.content : null;
+    const announcements = announcementsResponse ? announcementsResponse : null;
     // Stryker restore all
 
     // Stryker disable all (can't check if commonsId is null because it is mocked)
