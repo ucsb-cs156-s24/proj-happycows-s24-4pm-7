@@ -75,7 +75,7 @@ describe("PlayPage tests", () => {
         axiosMock.onGet("/api/profits/all/commonsid").reply(200, []);
         axiosMock.onPut("/api/usercommons/sell").reply(200, userCommons);
         axiosMock.onPut("/api/usercommons/buy").reply(200, userCommons);
-        axiosMock.onGet("/api/announcements/getbycommonsid", { params: { commonsId: 1 } }).reply(200, announcementsResponse);
+        axiosMock.onGet("/api/announcements/all", { params: { commonsId: 1 } }).reply(200, announcementsResponse);
     });
 
     test("renders without crashing", () => {

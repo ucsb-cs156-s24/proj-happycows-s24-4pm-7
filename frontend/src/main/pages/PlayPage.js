@@ -71,10 +71,10 @@ export default function PlayPage() {
 
     // Stryker disable all
     const { data: announcementsResponse } = useBackend(
-        [`/api/announcements/getbycommonsid?commonsId=${commonsId}`],
+        [`/api/announcements/all?commonsId=${commonsId}`],
         {
             method: "GET",
-            url: "/api/announcements/getbycommonsid",
+            url: "/api/announcements/all",
             params: {
                 commonsId: commonsId,
             },
