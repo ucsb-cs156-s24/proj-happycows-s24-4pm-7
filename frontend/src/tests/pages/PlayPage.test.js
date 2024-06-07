@@ -38,15 +38,15 @@ describe("PlayPage tests", () => {
             showChat: true
         };
         const announcementsResponse = {
-            content: [
-                {
+            
+                
                     id: 1,
                     commonsId: 1,
                     startDate: "2024-05-22T22:19:56.800-07:00",
                     endDate: null,
                     announcementText: "First Announcement"
-                }
-            ]
+                
+            
         };
         axiosMock.reset();
         axiosMock.resetHistory();
